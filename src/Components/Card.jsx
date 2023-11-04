@@ -2,7 +2,7 @@ import React from "react";
 
 import Avatar from "./Avatar";
 import { priority_arr, status_arr } from "./constants";
-export default function Card({ ticket, users }) {
+export default function Card({ ticket, users, grouping }) {
   const name = users[ticket.userId].name;
   const available = users[ticket.userId].available;
   const priority = priority_arr[ticket.priority];
@@ -25,16 +25,26 @@ export default function Card({ ticket, users }) {
           style={{
             fontSize: "16px",
             color: "#9c9c9c",
+            marginBottom: "10px",
           }}
         >
           {ticket.id}
         </span>
-        <Avatar name={name} available={available} />
+        {grouping === "User" ? null : (
+          <Avatar name={name} available={available} />
+        )}
       </div>
       <div
         style={{ display: "flex", justifyContent: "space-start", gap: "10px" }}
       >
-        <img src={status} height={"18px"} width={"18px"} alt={ticket.status} />
+        {grouping === "Status" ? null : (
+          <img
+            src={status}
+            height={"18px"}
+            width={"18px"}
+            alt={ticket.status}
+          />
+        )}
         <span
           style={{
             fontSize: "14px",
@@ -56,12 +66,14 @@ export default function Card({ ticket, users }) {
           marginTop: "10px",
         }}
       >
-        <img
-          src={priority}
-          height={"18px"}
-          width={"18px"}
-          alt={ticket.priority}
-        />
+        {grouping === "Priority" ? null : (
+          <img
+            src={priority}
+            height={"18px"}
+            width={"18px"}
+            alt={ticket.priority}
+          />
+        )}
         {ticket.tag.map((t) => {
           return (
             <div

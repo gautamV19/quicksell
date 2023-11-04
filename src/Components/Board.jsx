@@ -185,6 +185,7 @@ export default function Board() {
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
+                  padding: "10px",
                 }}
               >
                 <div
@@ -278,7 +279,7 @@ export default function Board() {
               </div>
               <div>
                 {columns[key].map((t, key) => {
-                  return <Card ticket={t} users={_users} />;
+                  return <Card ticket={t} users={_users} grouping={display} />;
                 })}
               </div>
             </div>
