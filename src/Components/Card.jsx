@@ -1,26 +1,8 @@
 import React from "react";
 
-import no_priority from "../assets/icons/no_priority.png";
-import low from "../assets/icons/low.png";
-import medium from "../assets/icons/medium.png";
-import high from "../assets/icons/high.png";
-import urgent from "../assets/icons/urgent.png";
-
-import backlog from "../assets/icons/backlog.png";
-import in_progress from "../assets/icons/in_progress.png";
-import todo from "../assets/icons/todo.png";
-import done from "../assets/icons/done.png";
-import canceled from "../assets/icons/canceled.png";
+import Avatar from "./Avatar";
+import { priority_arr, status_arr } from "./constants";
 export default function Card({ ticket, users }) {
-  const priority_arr = [no_priority, low, medium, high, urgent];
-  const status_arr = {
-    Backlog: backlog,
-    "In progress": in_progress,
-    Todo: todo,
-    Done: done,
-    Canceled: canceled,
-  };
-
   const name = users[ticket.userId].name;
   const available = users[ticket.userId].available;
   const priority = priority_arr[ticket.priority];
@@ -31,11 +13,11 @@ export default function Card({ ticket, users }) {
       style={{
         display: "flex",
         flexDirection: "column",
-        border: "1px solid #acacac",
         margin: "10px 2px",
         padding: "15px",
         backgroundColor: "#fff",
         borderRadius: "10px",
+        boxShadow: "0px 0px 1px 0px rgba(100,100,100,0.75)",
       }}
     >
       <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -47,34 +29,7 @@ export default function Card({ ticket, users }) {
         >
           {ticket.id}
         </span>
-        <div>
-          <div
-            style={{
-              height: "25px",
-              width: "30px",
-              borderRadius: "50%",
-              textAlign: "center",
-              paddingTop: "5px",
-              color: "white",
-              backgroundColor: `rgb(${Math.random() * 255},${
-                Math.random() * 255
-              },${Math.random() * 255})`,
-            }}
-          >
-            {name.trim()[0]}
-          </div>
-          {/* <Available flag={available} /> */}
-          <div
-            style={{
-              marginTop: "-18px",
-              color: `${available ? "green" : "grey"}`,
-              textAlign: "right",
-              fontSize: "20px",
-            }}
-          >
-            &#9679;
-          </div>
-        </div>
+        <Avatar name={name} available={available} />
       </div>
       <div
         style={{ display: "flex", justifyContent: "space-start", gap: "10px" }}

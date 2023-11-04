@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
-import Popup from "reactjs-popup";
-import Dropdown from "react-dropdown";
+import { priority_arr, status_arr } from "./constants";
 
 import Card from "./Card";
+import Avatar from "./Avatar";
+const priorities = ["No priority", "Low", "Medium", "High", "Urgent"];
 
 export default function Board() {
   const [ticket, setTicket] = useState([]);
   const [users, setUsers] = useState([]);
-  const [display, setDisplay] = useState("");
-  const [order, setOrder] = useState("");
+  const [display, setDisplay] = useState("Status");
+  const [order, setOrder] = useState("Priority");
 
   const columns = ticket.reduce((acc, t) => {
     const groupByKey =
@@ -42,9 +43,6 @@ export default function Board() {
         setTicket(data.tickets);
         setUsers(data.users);
       });
-
-    setDisplay("Status");
-    setOrder("Priority");
   }, []);
 
   const _users = users.reduce((acc, u) => {
@@ -86,7 +84,7 @@ export default function Board() {
             setClick((prev) => !prev);
           }}
         >
-          ≡ Display 🔽{" "}
+          ≡ Display 🔽
         </button>
       </div>
       {click && (
@@ -114,6 +112,7 @@ export default function Board() {
           >
             <span>Grouping</span>
             <select
+              value={display}
               onChange={(e) => {
                 setDisplay(e.target.value);
               }}
@@ -131,6 +130,7 @@ export default function Board() {
           >
             <span>Ordering</span>
             <select
+              value={order}
               onChange={(e) => {
                 setOrder(e.target.value);
               }}
@@ -147,6 +147,7 @@ export default function Board() {
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-around",
+          marginTop: "10px",
         }}
       >
         {Object.keys(columns).map((key) => {
@@ -160,7 +161,102 @@ export default function Board() {
                 }%`,
               }}
             >
-              <div>{key}</div>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "flex-start",
+                    alignItems: "center",
+                    marginBottom: "10px",
+                    gap: "10px",
+                  }}
+                >
+                  {display === "User" ? (
+                    <>
+                      <Avatar
+                        name={_users[key].name}
+                        available={_users[key].available}
+                      />
+                      <span>{_users[key].name} </span>
+                      <span
+                        style={{
+                          color: "grey",
+                          fontSize: "14px",
+                        }}
+                      >
+                        {columns[key].length}
+                      </span>
+                    </>
+                  ) : display === "Status" ? (
+                    <>
+                      <img
+                        src={status_arr[key]}
+                        height={"18px"}
+                        width={"18px"}
+                        alt={key}
+                      />
+                      <span>{key} </span>
+                      <span
+                        style={{
+                          color: "grey",
+                          fontSize: "14px",
+                        }}
+                      >
+                        {columns[key].length}
+                      </span>
+                    </>
+                  ) : display === "Priority" ? (
+                    <>
+                      <img
+                        src={priority_arr[key]}
+                        height={"18px"}
+                        width={"18px"}
+                        alt={key}
+                      />
+                      <span>{priorities[key]} </span>
+                      <span
+                        style={{
+                          color: "grey",
+                          fontSize: "14px",
+                        }}
+                      >
+                        {columns[key].length}
+                      </span>
+                    </>
+                  ) : null}
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    alignItems: "center",
+                    marginBottom: "10px",
+                    gap: "10px",
+                    color: "grey",
+                  }}
+                >
+                  <span
+                    style={{
+                      cursor: "pointer",
+                    }}
+                  >
+                    +
+                  </span>
+                  <span
+                    style={{
+                      cursor: "pointer",
+                    }}
+                  >
+                    …
+                  </span>
+                </div>
+              </div>
               <div>
                 {columns[key].map((t, key) => {
                   return <Card ticket={t} users={_users} />;
