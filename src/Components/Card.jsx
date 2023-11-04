@@ -24,9 +24,11 @@ export default function Card({ ticket, users }) {
         setAvailable(u.available);
       }
     });
+  }, [users]);
 
+  useEffect(() => {
     setpriority(arr[ticket.priority]);
-  }, []);
+  }, [ticket]);
 
   const ticketIdStyle = {};
 
