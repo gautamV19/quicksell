@@ -64,7 +64,7 @@ export default function Card({ ticket, users }) {
         />
         {ticket.tag.map((t) => {
           return (
-            <span
+            <div
               style={{
                 border: "1px solid #acacac",
                 borderRadius: "5px",
@@ -80,14 +80,14 @@ export default function Card({ ticket, users }) {
             >
               <span
                 style={{
-                  fontSize: "20px",
+                  fontSize: "23px",
                   fontWeight: "600",
                 }}
               >
                 &#9679;
-              </span>{" "}
-              {t}
-            </span>
+              </span>
+              <span>{t}</span>
+            </div>
           );
         })}
       </div>

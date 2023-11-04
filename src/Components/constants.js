@@ -1,4 +1,4 @@
-import no_priority from "../assets/icons/no_priority.png";
+import no_priority from "../assets/icons/no_priority.svg";
 import low from "../assets/icons/low.png";
 import medium from "../assets/icons/medium.png";
 import high from "../assets/icons/high.png";

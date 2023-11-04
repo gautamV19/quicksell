@@ -16,9 +16,7 @@ export default function Avatar({ name, available }) {
             textAlign: "center",
             paddingTop: "5px",
             color: "white",
-            backgroundColor: `rgb(${Math.random() * 255},${
-              Math.random() * 255
-            },${Math.random() * 255})`,
+            backgroundColor: "lightgreen",
           }}
         >
           {name.trim()[0]}

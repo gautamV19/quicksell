@@ -119,6 +119,12 @@ export default function Board() {
             <span style={{ color: "#9c9c9c", fontSize: "12px" }}>Grouping</span>
             <select
               value={display}
+              style={{
+                border: "1px solid #acacac",
+                borderRadius: "5px",
+                width: "100px",
+                padding: "2px",
+              }}
               onChange={(e) => {
                 setDisplay(e.target.value);
               }}
@@ -138,6 +144,12 @@ export default function Board() {
             <span style={{ color: "#9c9c9c", fontSize: "12px" }}>Ordering</span>
             <select
               value={order}
+              style={{
+                border: "1px solid #acacac",
+                borderRadius: "5px",
+                width: "100px",
+                padding: "2px",
+              }}
               onChange={(e) => {
                 setOrder(e.target.value);
               }}
