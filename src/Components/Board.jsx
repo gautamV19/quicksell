@@ -75,16 +75,20 @@ export default function Board() {
         <button
           style={{
             backgroundColor: "white",
-            border: "1px solid #acacac",
             borderRadius: "5px",
             cursor: "pointer",
+            height: "30px",
+            width: "100px",
+            fontSize: "15px",
+            border: "0.5px solid #acacac",
+            boxShadow: "0px 0.5px 1px 0.5px rgba(200,200,200,1.5)",
           }}
           onClick={(e) => {
             e.stopPropagation();
             setClick((prev) => !prev);
           }}
         >
-          ≡ Display 🔽
+          ≡ Display
         </button>
       </div>
       {click && (
@@ -94,11 +98,12 @@ export default function Board() {
           }}
           style={{
             position: "absolute",
-            backgroundColor: "white",
-            border: "1px solid #acacac",
+            backgroundColor: "#f4f5f8",
+            // border: "1px solid #acacac",
+            boxShadow: "0px 0.5px 1px 0.5px rgba(200,200,200,1.5)",
             borderRadius: "5px",
-            width: "250px",
-            top: "4.5vh",
+            width: "200px",
+            top: "5vh",
             left: "10px",
             padding: "10px",
           }}
@@ -108,9 +113,10 @@ export default function Board() {
               display: "flex",
               justifyContent: "space-between",
               marginBottom: "10px",
+              alignItems: "center",
             }}
           >
-            <span>Grouping</span>
+            <span style={{ color: "#9c9c9c", fontSize: "12px" }}>Grouping</span>
             <select
               value={display}
               onChange={(e) => {
@@ -126,9 +132,10 @@ export default function Board() {
             style={{
               display: "flex",
               justifyContent: "space-between",
+              alignItems: "center",
             }}
           >
-            <span>Ordering</span>
+            <span style={{ color: "#9c9c9c", fontSize: "12px" }}>Ordering</span>
             <select
               value={order}
               onChange={(e) => {
