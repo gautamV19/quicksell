@@ -11,15 +11,15 @@ export default function Board() {
       .then((data) => {
         setTicket(data.tickets);
         setUsers(data.users);
+        console.log(users);
       });
   }, []);
 
   return (
     <div>
       <h1>Board</h1>
-      {console.log(ticket)}
       {ticket.map((t, i) => {
-        return <Card ticket={t} key={i} />;
+        return <Card ticket={t} key={i} users={users} />;
       })}
     </div>
   );
